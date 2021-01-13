@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Years</title>
+</head>
+<body>
+    <label for="hyears">Years(Human)</label>
+    <select name="hyears" id="hyears">
+        
+    </select><br><br>
+    
+    <label for="hmonths">Months(Human)</label>
+    <select name="hmonths" id="hmonths">
+
+    </select>
+    <br><br>
+    <button id="convert">Convert to dog years</button>
+
+    <h1 id="result"></h1>
+
+    <script>
+        let hyears = document.getElementById('hyears');
+        let hmonths = document.getElementById('hmonths');
+        let result = document.getElementById('result');
+
+        for(let i=0;i<101;i++)
+        {
+            let opt = document.createElement('option');
+            opt.textContent = i;
+            //opt.setAttribute('value',i);
+            hyears.appendChild(opt);
+        }
+
+        for(let i=0; i<12; i++)
+        {
+            let opt = document.createElement('option');
+            opt.textContent = i;
+            hmonths.appendChild(opt);
+        }
+
+        
+        function calculateDogYears(){
+            let hyears = Number(document.getElementById('hyears').value);
+            let hmonths = Number(document.getElementById('hmonths').value);
+            console.log(hyears);
+            console.log(hmonths);
+            let tmonths;
+            let dmonths;
+            tmonths = hmonths + (hyears * 12);
+            console.log(tmonths);
+            if(tmonths<=24)
+            {
+                console.log(tmonths);
+                dmonths = 10.5 * tmonths;
+                if((dmonths % 1) != 0)
+                {
+                    dmonths += 0.5;
+                }
+                let a = dmonths % 12;
+                dmonths -= a;
+                let b = dmonths / 12;
+                result.innerHTML = b + ' Years and ' + a + 'Months';
+            }
+            else
+            {
+                dmonths = (4 * tmonths) + 156;
+                let a = dmonths % 12;
+                dmonths -= a;
+                let b = dmonths / 12;
+                result.innerHTML = b + ' Years and ' + a + 'Months';
+            }
+        }
+
+        document.getElementById('convert').onclick = calculateDogYears;
+
+    </script>
+</body>
+</html>
